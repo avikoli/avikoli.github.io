@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — Technology Policy & Geopolitics</title>
+  <title>Avinash Koli — Technology Policy & Geopolitics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -12,7 +12,7 @@
       --bg: #F7F5F1;
       --ink: #1C1C1C;
       --ink-light: #6B6560;
-      --accent: #1B3A5C;
+      --accent: #111111;
       --accent-warm: #C4874A;
       --rule: #D8D3CB;
       --card-bg: #EFECE6;
@@ -89,7 +89,6 @@
       flex-direction: column;
       justify-content: center;
       padding: 6rem 4rem 6rem 4rem;
-      border-right: 1px solid var(--rule);
     }
 
     .hero-eyebrow {
@@ -197,7 +196,6 @@
 
     .hero-topics {
       padding-top: 2rem;
-      border-top: 1px solid var(--rule);
     }
 
     .topic-label {
@@ -236,8 +234,6 @@
       align-items: baseline;
       gap: 1.5rem;
       margin-bottom: 4rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 1px solid var(--rule);
     }
 
     .section-number {
@@ -254,16 +250,42 @@
       letter-spacing: 0.01em;
     }
 
-    .section-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
+    .section-rule { display: none; }
+
+    .hero-profile {
+      display: block;
+      margin-bottom: 2.5rem;
     }
 
-    /* ── ABOUT ── */
+    .hero-photo-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.4rem;
+      color: var(--ink-light);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-bio p {
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-bio p:last-child { margin-bottom: 0; }
+
+    .hero-bio strong { color: var(--ink); font-weight: 500; }
+
+    /* ── ABOUT (kept for nav anchor, now empty) ── */
     #about {
       background: var(--bg);
-      border-top: 1px solid var(--rule);
     }
 
     .about-grid {
@@ -339,7 +361,7 @@
     /* ── WORKS ── */
     #works {
       background: var(--card-bg);
-      border-top: 1px solid var(--rule);
+    }
     }
 
     .works-grid {
@@ -402,7 +424,6 @@
     /* ── BLOG ── */
     #blog {
       background: var(--bg);
-      border-top: 1px solid var(--rule);
     }
 
     .blog-list { display: flex; flex-direction: column; }
@@ -478,10 +499,7 @@
     .blog-new-post:hover { background: var(--accent); color: #fff; }
 
     /* ── CONTACT ── */
-    #contact {
-      background: var(--accent);
-      border-top: 1px solid var(--rule);
-    }
+    #contact { background: #111111; }
 
     #contact .section-title { color: #fff; }
     #contact .section-number { color: rgba(255,255,255,0.5); }
@@ -668,7 +686,7 @@
     @media (max-width: 1024px) {
       nav { padding: 1.2rem 2rem; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 7rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-left { padding: 7rem 2rem 3rem; border-right: none; }
       .hero-right { padding: 2rem 2rem 4rem; }
       section { padding: 4rem 2rem; }
       .works-grid { grid-template-columns: repeat(2, 1fr); }
@@ -707,7 +725,6 @@
       .hero-left {
         padding: 6rem 1.2rem 2.5rem;
         border-right: none;
-        border-bottom: 1px solid var(--rule);
       }
       .hero-name {
         font-size: clamp(2.6rem, 11vw, 4rem);
@@ -730,11 +747,8 @@
       section { padding: 3rem 1.2rem; }
       .section-title { font-size: 1.6rem; }
 
-      /* About */
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .about-photo-placeholder { aspect-ratio: 4/3; max-height: 240px; }
-      .about-content h3 { font-size: 1.4rem; }
-      .expertise-list { grid-template-columns: 1fr; gap: 0.6rem; }
+      .hero-profile { grid-template-columns: 100px 1fr; gap: 1.2rem; }
+      .hero-bio p { font-size: 0.82rem; }
 
       /* Works */
       .works-grid { grid-template-columns: 1fr; }
@@ -775,14 +789,13 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Your Name</a>
+    <a href="#" class="nav-logo">Avinash Koli</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#home" onclick="closeNav()">About</a></li>
       <li><a href="#works" onclick="closeNav()">Works</a></li>
-      <li><a href="#blog" onclick="closeNav()">Writing</a></li>
       <li><a href="#contact" onclick="closeNav()">Contact</a></li>
     </ul>
   </nav>
@@ -803,12 +816,22 @@
   <section class="hero" id="home">
     <div class="hero-left">
       <p class="hero-eyebrow fade-up">Technology Policy · Geopolitics · Semiconductors</p>
-      <h1 class="hero-name fade-up delay-1">
-        Your<br /><em>Name</em><br />Here
-      </h1>
-      <p class="hero-tagline fade-up delay-2">
-        Navigating the intersection of technology, global power, and industrial strategy — with a focus on the semiconductor industry.
-      </p>
+      <h1 class="hero-name fade-up delay-1">Avinash Koli</h1>
+
+      <div class="hero-profile fade-up delay-2">
+        <div class="hero-bio">
+          <p>
+            I am a <strong>technology policy and geopolitics expert</strong> currently working in the semiconductor industry. My work sits at the crossroads of industrial strategy, international relations, and emerging technology governance.
+          </p>
+          <p>
+            Over the past decade, I have advised governments, think tanks, and private sector leaders on how to navigate an increasingly fragmented technological landscape — from export controls and supply chain resilience to the geopolitics of chip manufacturing.
+          </p>
+          <p>
+            I believe that <strong>sound policy requires deep technical literacy</strong>, and that the decisions made in semiconductor boardrooms today will shape the balance of power for the next generation.
+          </p>
+        </div>
+      </div>
+
       <div class="hero-cta fade-up delay-3">
         <a href="#works" class="btn-primary">View My Work</a>
         <a href="#contact" class="btn-ghost">Get in Touch</a>
@@ -826,6 +849,14 @@
           <span class="tag">Industrial Policy</span>
           <span class="tag">Tech Governance</span>
           <span class="tag">CHIPS Act</span>
+          <span class="tag">Technology Policy & Regulation</span>
+          <span class="tag">Geopolitical Risk Analysis</span>
+          <span class="tag">Semiconductor Industry Strategy</span>
+          <span class="tag">Export Controls & Trade Law</span>
+          <span class="tag">US-China Technology Competition</span>
+          <span class="tag">Industrial & Innovation Policy</span>
+          <span class="tag">Supply Chain Security</span>
+          <span class="tag">Strategic Forecasting</span>
         </div>
       </div>
       <div class="hero-stats">
@@ -844,43 +875,6 @@
         <div class="stat-block">
           <div class="stat-number">3</div>
           <div class="stat-label">Languages</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-header">
-      <span class="section-number">01</span>
-      <h2 class="section-title">About</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="about-grid">
-      <div class="about-photo-placeholder">
-        <span class="photo-icon">◻</span>
-        <span>Your Photo</span>
-      </div>
-      <div class="about-content">
-        <h3>Policy thinker. Industry practitioner. Global perspective.</h3>
-        <p>
-          I am a <strong>technology policy and geopolitics expert</strong> currently working in the semiconductor industry. My work sits at the crossroads of industrial strategy, international relations, and emerging technology governance.
-        </p>
-        <p>
-          Over the past decade, I have advised governments, think tanks, and private sector leaders on how to navigate an increasingly fragmented technological landscape — from export controls and supply chain resilience to the geopolitics of chip manufacturing.
-        </p>
-        <p>
-          I believe that <strong>sound policy requires deep technical literacy</strong>, and that the decisions made in semiconductor boardrooms today will shape the balance of power for the next generation.
-        </p>
-        <div class="expertise-list">
-          <span class="expertise-item">Technology Policy & Regulation</span>
-          <span class="expertise-item">Geopolitical Risk Analysis</span>
-          <span class="expertise-item">Semiconductor Industry Strategy</span>
-          <span class="expertise-item">Export Controls & Trade Law</span>
-          <span class="expertise-item">US-China Technology Competition</span>
-          <span class="expertise-item">Industrial & Innovation Policy</span>
-          <span class="expertise-item">Supply Chain Security</span>
-          <span class="expertise-item">Strategic Forecasting</span>
         </div>
       </div>
     </div>
@@ -958,59 +952,6 @@
     </div>
   </section>
 
-  <!-- BLOG -->
-  <section id="blog">
-    <div class="section-header">
-      <span class="section-number">03</span>
-      <h2 class="section-title">Writing</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="blog-list">
-
-      <a href="#" class="blog-item">
-        <div class="blog-date">Mar<br />2025</div>
-        <div>
-          <p class="blog-category">Geopolitics</p>
-          <h3 class="blog-title">Why the Next Chip War Will Be Fought in Standards Bodies</h3>
-          <p class="blog-excerpt">IEEE, JEDEC, and the quiet power of technical standardisation in shaping who controls the future of computing.</p>
-        </div>
-        <span class="blog-read">Read →</span>
-      </a>
-
-      <a href="#" class="blog-item">
-        <div class="blog-date">Jan<br />2025</div>
-        <div>
-          <p class="blog-category">Industrial Policy</p>
-          <h3 class="blog-title">Subsidies, Sovereignty, and the New Industrial Policy Consensus</h3>
-          <p class="blog-excerpt">From the CHIPS Act to the EU Chips Act to India's PLI scheme — what does the global rush to subsidise semiconductors actually tell us?</p>
-        </div>
-        <span class="blog-read">Read →</span>
-      </a>
-
-      <a href="#" class="blog-item">
-        <div class="blog-date">Nov<br />2024</div>
-        <div>
-          <p class="blog-category">Technology</p>
-          <h3 class="blog-title">Advanced Packaging: The Underrated Battleground of Chip Competition</h3>
-          <p class="blog-excerpt">As leading-edge lithography hits physical limits, why advanced packaging — and who controls it — matters more than ever.</p>
-        </div>
-        <span class="blog-read">Read →</span>
-      </a>
-
-      <a href="#" class="blog-item">
-        <div class="blog-date">Sep<br />2024</div>
-        <div>
-          <p class="blog-category">Policy Analysis</p>
-          <h3 class="blog-title">Reading the October Rules: What BIS's Latest Controls Really Mean</h3>
-          <p class="blog-excerpt">A line-by-line unpacking of the latest US export control regulations on advanced chips and what they mean for industry and allies.</p>
-        </div>
-        <span class="blog-read">Read →</span>
-      </a>
-
-    </div>
-    <a href="#" class="blog-new-post">+ Start New Post</a>
-  </section>
-
   <!-- CONTACT -->
   <section id="contact">
     <div class="section-header">
@@ -1020,28 +961,20 @@
     </div>
     <div class="contact-grid">
       <div>
-        <p class="contact-intro">Let's talk policy, geopolitics, or the semiconductor industry.</p>
-        <p class="contact-sub">
-          I'm open to speaking engagements, advisory work, media commentary, and collaborative research. If you're working on something at the intersection of technology and global affairs, I'd love to hear from you.
-        </p>
         <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#8af3e5ffcaefe7ebe3e6a4e9e5e7" class="contact-link">
+          <a href="mailto:you@email.com" class="contact-link">
             <span class="contact-link-icon">✉</span>
-            <span class="__cf_email__" data-cfemail="97eef8e2d7f2faf6fefbb9f4f8fa">[email&#160;protected]</span>
+            you@email.com
           </a>
           <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
             <span class="contact-link-icon">in</span>
             linkedin.com/in/yourprofile
           </a>
-          <a href="https://twitter.com/yourhandle" class="contact-link" target="_blank">
-            <span class="contact-link-icon">𝕏</span>
-            @yourhandle
-          </a>
         </div>
       </div>
       <form class="contact-form" onsubmit="return false;">
         <div class="form-field">
-          <label class="form-label">Your Name</label>
+          <label class="form-label">Avinash Koli</label>
           <input class="form-input" type="text" placeholder="Jane Smith" />
         </div>
         <div class="form-field">
@@ -1063,4 +996,4 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-name">Your Name — Technology Policy
+    <span class="footer-name">Avinash Koli — Technology Policy
