@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Avinash Koli</title>
+  <title>Your Name — Technology Policy & Geopolitics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -643,21 +643,131 @@
     .delay-3 { animation-delay: 0.4s; }
     .delay-4 { animation-delay: 0.55s; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 6rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
-      .hero-right { padding: 2rem 1.5rem 4rem; }
+    /* ── HAMBURGER MENU ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      transition: all 0.3s ease;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── TABLET (max 1024px) ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.2rem 2rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 7rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { padding: 2rem 2rem 4rem; }
+      section { padding: 4rem 2rem; }
+      .works-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 3rem; }
+    }
+
+    /* ── MOBILE (max 640px) ── */
+    @media (max-width: 640px) {
+      /* Nav */
+      nav {
+        padding: 1rem 1.2rem;
+        flex-wrap: wrap;
+        position: fixed;
+      }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        margin-top: 0.8rem;
+        border-top: 1px solid var(--rule);
+        padding-top: 0.5rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 0.85rem 0;
+        font-size: 0.85rem;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      /* Hero */
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left {
+        padding: 6rem 1.2rem 2.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+      }
+      .hero-name {
+        font-size: clamp(2.6rem, 11vw, 4rem);
+        margin-bottom: 1.2rem;
+      }
+      .hero-tagline { font-size: 0.95rem; max-width: 100%; margin-bottom: 2rem; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-ghost {
+        text-align: center;
+        padding: 1rem 1.5rem;
+        font-size: 0.82rem;
+      }
+      .hero-right { padding: 2rem 1.2rem 3rem; gap: 1.5rem; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      section { padding: 4rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; }
+      .stat-block { padding: 1.2rem 1rem; }
+      .stat-number { font-size: 2.2rem; }
+      .stat-label { font-size: 0.65rem; }
+
+      /* Sections */
+      section { padding: 3rem 1.2rem; }
+      .section-title { font-size: 1.6rem; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo-placeholder { aspect-ratio: 4/3; max-height: 240px; }
+      .about-content h3 { font-size: 1.4rem; }
+      .expertise-list { grid-template-columns: 1fr; gap: 0.6rem; }
+
+      /* Works */
       .works-grid { grid-template-columns: 1fr; }
-      .blog-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .work-card { padding: 1.8rem 1.4rem; }
+      .work-title { font-size: 1.15rem; }
+
+      /* Blog */
+      .blog-item {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        padding: 1.5rem 0;
+      }
       .blog-date { display: none; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+      .blog-title { font-size: 1.1rem; }
+      .blog-read { font-size: 0.75rem; margin-top: 0.3rem; display: inline-block; }
+
+      /* Contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-intro { font-size: 1.5rem; }
+      .contact-link { font-size: 0.85rem; }
+      .form-input, .form-textarea {
+        font-size: 1rem; /* prevents iOS zoom on focus */
+        padding: 0.85rem 1rem;
+      }
+      .btn-send { width: 100%; text-align: center; padding: 1rem; }
+
+      /* Footer */
+      footer {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+      }
     }
   </style>
 </head>
@@ -665,14 +775,29 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Avinash Koli</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#works">Works</a></li>
-      <li><a href="#blog">Writing</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <a href="#" class="nav-logo">Your Name</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#works" onclick="closeNav()">Works</a></li>
+      <li><a href="#blog" onclick="closeNav()">Writing</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
     </ul>
   </nav>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      links.classList.toggle('open');
+    });
+    function closeNav() {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    }
+  </script>
 
   <!-- HERO -->
   <section class="hero" id="home">
@@ -682,7 +807,7 @@
         Your<br /><em>Name</em><br />Here
       </h1>
       <p class="hero-tagline fade-up delay-2">
-        Navigating the intersection of technology, geopolitics, and industrial strategy — with a focus on the semiconductor industry.
+        Navigating the intersection of technology, global power, and industrial strategy — with a focus on the semiconductor industry.
       </p>
       <div class="hero-cta fade-up delay-3">
         <a href="#works" class="btn-primary">View My Work</a>
@@ -697,29 +822,24 @@
           <span class="tag">Export Controls</span>
           <span class="tag">US-China Tech Relations</span>
           <span class="tag">Supply Chain Strategy</span>
+          <span class="tag">Indo-Pacific</span>
           <span class="tag">Industrial Policy</span>
+          <span class="tag">Tech Governance</span>
+          <span class="tag">CHIPS Act</span>
         </div>
       </div>
       <div class="hero-stats">
         <div class="stat-block">
-          <div class="stat-number">4+</div>
+          <div class="stat-number">10+</div>
           <div class="stat-label">Years of Experience</div>
         </div>
         <div class="stat-block">
-          <div class="stat-number">100+</div>
-          <div class="stat-label">Issue Briefs</div>
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Publications</div>
         </div>
         <div class="stat-block">
           <div class="stat-number">15+</div>
-          <div class="stat-label">Country Profiles</div>
-         </div>
-          <div class="stat-block">
-          <div class="stat-number">60+</div>
-          <div class="stat-label">Policy Briefs</div>
-        </div>
-          <div class="stat-block">
-          <div class="stat-number">30+</div>
-          <div class="stat-label">CEO Remarks/Speeches</div>
+          <div class="stat-label">Countries Covered</div>
         </div>
         <div class="stat-block">
           <div class="stat-number">3</div>
@@ -905,9 +1025,9 @@
           I'm open to speaking engagements, advisory work, media commentary, and collaborative research. If you're working on something at the intersection of technology and global affairs, I'd love to hear from you.
         </p>
         <div class="contact-links">
-          <a href="mailto:you@email.com" class="contact-link">
+          <a href="/cdn-cgi/l/email-protection#8af3e5ffcaefe7ebe3e6a4e9e5e7" class="contact-link">
             <span class="contact-link-icon">✉</span>
-            you@email.com
+            <span class="__cf_email__" data-cfemail="97eef8e2d7f2faf6fefbb9f4f8fa">[email&#160;protected]</span>
           </a>
           <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
             <span class="contact-link-icon">in</span>
@@ -921,7 +1041,7 @@
       </div>
       <form class="contact-form" onsubmit="return false;">
         <div class="form-field">
-          <label class="form-label">Avinash Koli</label>
+          <label class="form-label">Your Name</label>
           <input class="form-input" type="text" placeholder="Jane Smith" />
         </div>
         <div class="form-field">
@@ -943,9 +1063,4 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-name">Avinash Koli</span>
-    <span class="footer-note">© 2025 · Built with GitHub Pages</span>
-  </footer>
-
-</body>
-</html>
+    <span class="footer-name">Your Name — Technology Policy
