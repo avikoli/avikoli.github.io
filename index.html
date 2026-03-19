@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Technology Policy & Geopolitics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F5F1;
+      --ink: #1C1C1C;
+      --ink-light: #6B6560;
+      --accent: #1B3A5C;
+      --accent-warm: #C4874A;
+      --rule: #D8D3CB;
+      --card-bg: #EFECE6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(247, 245, 241, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 4rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 2rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      max-width: 34ch;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: #122B46; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem;
+      gap: 2rem;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: auto;
+    }
+
+    .stat-block {
+      background: var(--bg);
+      padding: 2rem 1.8rem;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    .hero-topics {
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .topic-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+    }
+
+    .topic-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--rule);
+      color: var(--ink-light);
+      background: transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover { border-color: var(--accent); color: var(--accent); cursor: default; }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--accent-warm);
+      font-style: italic;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-photo-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.6rem;
+      color: var(--ink-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .photo-icon { font-size: 2rem; opacity: 0.4; }
+
+    .about-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .about-content p {
+      font-size: 0.97rem;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .about-content p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .expertise-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .expertise-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--ink-light);
+    }
+
+    .expertise-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--accent-warm);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── WORKS ── */
+    #works {
+      background: var(--card-bg);
+      border-top: 1px solid var(--rule);
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .work-card {
+      background: var(--bg);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .work-card:hover { background: #fff; }
+
+    .work-type {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+    }
+
+    .work-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .work-desc {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .work-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+    }
+
+    .work-arrow { color: var(--accent); font-size: 1rem; }
+
+    /* ── BLOG ── */
+    #blog {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+
+    .blog-list { display: flex; flex-direction: column; }
+
+    .blog-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
+
+    .blog-item:hover .blog-title { color: var(--accent); }
+
+    .blog-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.4;
+    }
+
+    .blog-category {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 0.4rem;
+    }
+
+    .blog-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+
+    .blog-excerpt {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      margin-top: 0.3rem;
+      line-height: 1.6;
+    }
+
+    .blog-read {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .blog-new-post {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+      padding: 0.8rem 1.8rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .blog-new-post:hover { background: var(--accent); color: #fff; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--accent);
+      border-top: 1px solid var(--rule);
+    }
+
+    #contact .section-title { color: #fff; }
+    #contact .section-number { color: rgba(255,255,255,0.5); }
+    #contact .section-rule { background: rgba(255,255,255,0.15); }
+    #contact .section-header { border-bottom-color: rgba(255,255,255,0.15); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+
+    .contact-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: #fff; }
+
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover .contact-link-icon {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .form-textarea { min-height: 120px; }
+
+    .btn-send {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-send:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.55s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 6rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { padding: 2rem 1.5rem 4rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .works-grid { grid-template-columns: 1fr; }
+      .blog-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .blog-date { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#blog">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="hero-eyebrow fade-up">Technology Policy · Geopolitics · Semiconductors</p>
+      <h1 class="hero-name fade-up delay-1">
+        Your<br /><em>Name</em><br />Here
+      </h1>
+      <p class="hero-tagline fade-up delay-2">
+        Navigating the intersection of technology, global power, and industrial strategy — with a focus on the semiconductor industry.
+      </p>
+      <div class="hero-cta fade-up delay-3">
+        <a href="#works" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right fade-up delay-2">
+      <div class="hero-topics">
+        <p class="topic-label">Areas of Focus</p>
+        <div class="topic-tags">
+          <span class="tag">Semiconductor Policy</span>
+          <span class="tag">Export Controls</span>
+          <span class="tag">US-China Tech Relations</span>
+          <span class="tag">Supply Chain Strategy</span>
+          <span class="tag">Indo-Pacific</span>
+          <span class="tag">Industrial Policy</span>
+          <span class="tag">Tech Governance</span>
+          <span class="tag">CHIPS Act</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-block">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Countries Covered</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Languages</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo-placeholder">
+        <span class="photo-icon">◻</span>
+        <span>Your Photo</span>
+      </div>
+      <div class="about-content">
+        <h3>Policy thinker. Industry practitioner. Global perspective.</h3>
+        <p>
+          I am a <strong>technology policy and geopolitics expert</strong> currently working in the semiconductor industry. My work sits at the crossroads of industrial strategy, international relations, and emerging technology governance.
+        </p>
+        <p>
+          Over the past decade, I have advised governments, think tanks, and private sector leaders on how to navigate an increasingly fragmented technological landscape — from export controls and supply chain resilience to the geopolitics of chip manufacturing.
+        </p>
+        <p>
+          I believe that <strong>sound policy requires deep technical literacy</strong>, and that the decisions made in semiconductor boardrooms today will shape the balance of power for the next generation.
+        </p>
+        <div class="expertise-list">
+          <span class="expertise-item">Technology Policy & Regulation</span>
+          <span class="expertise-item">Geopolitical Risk Analysis</span>
+          <span class="expertise-item">Semiconductor Industry Strategy</span>
+          <span class="expertise-item">Export Controls & Trade Law</span>
+          <span class="expertise-item">US-China Technology Competition</span>
+          <span class="expertise-item">Industrial & Innovation Policy</span>
+          <span class="expertise-item">Supply Chain Security</span>
+          <span class="expertise-item">Strategic Forecasting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Selected Works</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="works-grid">
+
+      <a href="#" class="work-card">
+        <span class="work-type">Policy Report</span>
+        <h3 class="work-title">Rethinking Chip Supply Chains in the Post-CHIPS Era</h3>
+        <p class="work-desc">A comprehensive analysis of how the CHIPS and Science Act is reshaping global semiconductor manufacturing geography and its second-order geopolitical consequences.</p>
+        <div class="work-meta">
+          <span>2024 · Think Tank Name</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card">
+        <span class="work-type">Research Paper</span>
+        <h3 class="work-title">Export Controls as Foreign Policy: The New Toolkit</h3>
+        <p class="work-desc">Examining how the US Bureau of Industry and Security's October 2022 rules represent a paradigm shift in how technology is weaponised in great power competition.</p>
+        <div class="work-meta">
+          <span>2023 · Journal Name</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card">
+        <span class="work-type">Advisory Project</span>
+        <h3 class="work-title">Semiconductor Strategy for Emerging Economies</h3>
+        <p class="work-desc">Strategic advisory engagement with a South-East Asian government on developing a national semiconductor roadmap amidst US-China technology decoupling pressures.</p>
+        <div class="work-meta">
+          <span>2023 · Confidential</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card">
+        <span class="work-type">Op-Ed</span>
+        <h3 class="work-title">India's CHIPS Moment: Ambition, Reality, and the Path Forward</h3>
+        <p class="work-desc">A critical assessment of India's semiconductor ambitions, the India Semiconductor Mission, and the structural challenges the country must overcome to compete.</p>
+        <div class="work-meta">
+          <span>2024 · Publication Name</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card">
+        <span class="work-type">Conference Paper</span>
+        <h3 class="work-title">The Taiwan Question Through a Semiconductor Lens</h3>
+        <p class="work-desc">Presented at [Conference Name]: How TSMC's centrality in global chip supply changes the strategic calculus around the Taiwan Strait and deterrence theory.</p>
+        <div class="work-meta">
+          <span>2022 · [Conference]</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="#" class="work-card">
+        <span class="work-type">Industry Report</span>
+        <h3 class="work-title">Mapping the Global EDA & IP Landscape: Chokepoints & Vulnerabilities</h3>
+        <p class="work-desc">An industry-facing report examining how design software and IP dependencies create strategic leverage points in the global semiconductor value chain.</p>
+        <div class="work-meta">
+          <span>2022 · Company Name</span>
+          <span class="work-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Writing</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="blog-list">
+
+      <a href="#" class="blog-item">
+        <div class="blog-date">Mar<br />2025</div>
+        <div>
+          <p class="blog-category">Geopolitics</p>
+          <h3 class="blog-title">Why the Next Chip War Will Be Fought in Standards Bodies</h3>
+          <p class="blog-excerpt">IEEE, JEDEC, and the quiet power of technical standardisation in shaping who controls the future of computing.</p>
+        </div>
+        <span class="blog-read">Read →</span>
+      </a>
+
+      <a href="#" class="blog-item">
+        <div class="blog-date">Jan<br />2025</div>
+        <div>
+          <p class="blog-category">Industrial Policy</p>
+          <h3 class="blog-title">Subsidies, Sovereignty, and the New Industrial Policy Consensus</h3>
+          <p class="blog-excerpt">From the CHIPS Act to the EU Chips Act to India's PLI scheme — what does the global rush to subsidise semiconductors actually tell us?</p>
+        </div>
+        <span class="blog-read">Read →</span>
+      </a>
+
+      <a href="#" class="blog-item">
+        <div class="blog-date">Nov<br />2024</div>
+        <div>
+          <p class="blog-category">Technology</p>
+          <h3 class="blog-title">Advanced Packaging: The Underrated Battleground of Chip Competition</h3>
+          <p class="blog-excerpt">As leading-edge lithography hits physical limits, why advanced packaging — and who controls it — matters more than ever.</p>
+        </div>
+        <span class="blog-read">Read →</span>
+      </a>
+
+      <a href="#" class="blog-item">
+        <div class="blog-date">Sep<br />2024</div>
+        <div>
+          <p class="blog-category">Policy Analysis</p>
+          <h3 class="blog-title">Reading the October Rules: What BIS's Latest Controls Really Mean</h3>
+          <p class="blog-excerpt">A line-by-line unpacking of the latest US export control regulations on advanced chips and what they mean for industry and allies.</p>
+        </div>
+        <span class="blog-read">Read →</span>
+      </a>
+
+    </div>
+    <a href="#" class="blog-new-post">+ Start New Post</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">Let's talk policy, geopolitics, or the semiconductor industry.</p>
+        <p class="contact-sub">
+          I'm open to speaking engagements, advisory work, media commentary, and collaborative research. If you're working on something at the intersection of technology and global affairs, I'd love to hear from you.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:you@email.com" class="contact-link">
+            <span class="contact-link-icon">✉</span>
+            you@email.com
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+            <span class="contact-link-icon">in</span>
+            linkedin.com/in/yourprofile
+          </a>
+          <a href="https://twitter.com/yourhandle" class="contact-link" target="_blank">
+            <span class="contact-link-icon">𝕏</span>
+            @yourhandle
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-field">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="jane@example.com" />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Subject</label>
+          <input class="form-input" type="text" placeholder="Speaking Engagement / Research Collaboration / ..." />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about what you're working on..."></textarea>
+        </div>
+        <button type="submit" class="btn-send">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Your Name — Technology Policy & Geopolitics</span>
+    <span class="footer-note">© 2025 · Built with GitHub Pages</span>
+  </footer>
+
+</body>
+</html>
