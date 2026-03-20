@@ -36,18 +36,31 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--accent); }
 
+    /* ── MAX WIDTH CONTAINER ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 2rem;
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.4rem 4rem;
       background: rgba(247, 245, 241, 0.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2rem;
     }
 
     .nav-logo {
@@ -79,16 +92,19 @@
     /* ── HERO ── */
     .hero {
       min-height: auto;
+      padding-top: 4rem;
+    }
+
+    .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 4rem;
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 3rem 3rem 3rem 3rem;
+      padding: 3rem 2rem 3rem 0;
     }
 
     .hero-eyebrow {
@@ -160,7 +176,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 3rem 3rem;
+      padding: 3rem 0 3rem 2rem;
       gap: 1.2rem;
     }
 
@@ -226,7 +242,7 @@
 
     /* ── SECTION COMMONS ── */
     section {
-      padding: 3rem 3rem;
+      padding: 3rem 0;
     }
 
     .section-header {
@@ -432,13 +448,13 @@
     }
 
     .sample-work-bar {
-      padding: 1.2rem 1.6rem;
-      background: var(--card-bg);
+      padding: 1rem 0;
       font-size: 0.85rem;
       color: var(--ink-light);
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      margin-top: 1rem;
     }
 
     .sample-link {
@@ -727,10 +743,7 @@
     /* ── FOOTER ── */
     footer {
       background: #111;
-      padding: 2rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 2rem 0;
     }
 
     .footer-name {
@@ -785,16 +798,16 @@
     /* ── TABLET (max 1024px) ── */
     @media (max-width: 1024px) {
       nav { padding: 1rem 1.5rem; }
-      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; }
       .hero-left { padding: 5rem 1.5rem 2rem; border-right: none; }
       .hero-right { padding: 1.5rem 1.5rem 2.5rem; }
-      section { padding: 2.5rem 1.5rem; }
-      .works-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 2.5rem 0; }
       .about-grid { gap: 3rem; }
     }
 
     /* ── MOBILE (max 640px) ── */
     @media (max-width: 640px) {
+      .container { padding: 0 1.2rem; }
       /* Nav */
       nav {
         padding: 1rem 1.2rem;
@@ -821,33 +834,20 @@
       }
 
       /* Hero */
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left {
-        padding: 4.5rem 1.2rem 1.5rem;
-        border-right: none;
-      }
-      .hero-name {
-        font-size: clamp(2.6rem, 11vw, 4rem);
-        margin-bottom: 1.2rem;
-      }
-      .hero-tagline { font-size: 0.95rem; max-width: 100%; margin-bottom: 2rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-left { padding: 3rem 0 1.5rem; }
+      .hero-right { padding: 1.5rem 0 2rem; gap: 1rem; }
+      .hero-name { font-size: clamp(2.6rem, 11vw, 4rem); margin-bottom: 1.2rem; }
       .hero-cta { flex-direction: column; align-items: stretch; }
-      .btn-primary, .btn-ghost {
-        text-align: center;
-        padding: 1rem 1.5rem;
-        font-size: 0.82rem;
-      }
-      .hero-right { padding: 1.5rem 1.2rem 2rem; gap: 1rem; }
+      .btn-primary, .btn-ghost { text-align: center; padding: 1rem 1.5rem; font-size: 0.82rem; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .stat-block { padding: 0.9rem 0.8rem; }
       .stat-number { font-size: 2rem; }
       .stat-label { font-size: 0.65rem; }
 
       /* Sections */
-      section { padding: 2rem 1.2rem; }
+      section { padding: 2rem 0; }
       .section-title { font-size: 1.6rem; }
-
-      .hero-profile { grid-template-columns: 100px 1fr; gap: 1.2rem; }
       .hero-bio p { font-size: 0.82rem; }
 
       /* Works */
@@ -889,15 +889,17 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Avinash Koli</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" onclick="closeNav()">About</a></li>
-      <li><a href="#tracker-teaser" onclick="closeNav()">Tracker</a></li>
-      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
-    </ul>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Avinash Koli</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" onclick="closeNav()">About</a></li>
+        <li><a href="#tracker-teaser" onclick="closeNav()">Tracker</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      </ul>
+    </div>
   </nav>
   <script>
     const toggle = document.getElementById('navToggle');
@@ -914,29 +916,31 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-left">
-      <p class="hero-eyebrow fade-up">Technology Policy · Geopolitics · Semiconductors</p>
-      <h1 class="hero-name fade-up delay-1">Avinash Koli</h1>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <p class="hero-eyebrow fade-up">Technology Policy · Geopolitics · Semiconductors</p>
+          <h1 class="hero-name fade-up delay-1">Avinash Koli</h1>
 
-      <div class="hero-profile fade-up delay-2">
-        <div class="hero-bio">
-          <p>
-            I am a <strong>technology policy and geopolitics expert</strong> currently working in the semiconductor industry. My work sits at the crossroads of industrial strategy, international relations, and emerging technology governance.
-          </p>
-          <p>
-            Over the past decade, I have advised governments, think tanks, and private sector leaders on how to navigate an increasingly fragmented technological landscape — from export controls and supply chain resilience to the geopolitics of chip manufacturing.
-          </p>
-          <p>
-            I believe that <strong>sound policy requires deep technical literacy</strong>, and that the decisions made in semiconductor boardrooms today will shape the balance of power for the next generation.
-          </p>
+          <div class="hero-profile fade-up delay-2">
+            <div class="hero-bio">
+              <p>
+                I am a <strong>technology policy and geopolitics expert</strong> currently working in the semiconductor industry. My work sits at the crossroads of industrial strategy, international relations, and emerging technology governance.
+              </p>
+              <p>
+                Over the past decade, I have advised governments, think tanks, and private sector leaders on how to navigate an increasingly fragmented technological landscape — from export controls and supply chain resilience to the geopolitics of chip manufacturing.
+              </p>
+              <p>
+                I believe that <strong>sound policy requires deep technical literacy</strong>, and that the decisions made in semiconductor boardrooms today will shape the balance of power for the next generation.
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-cta fade-up delay-3">
+            <a href="tracker.html" class="btn-primary">Chip Policy Tracker</a>
+            <a href="#contact" class="btn-ghost">Get in Touch</a>
+          </div>
         </div>
-      </div>
-
-      <div class="hero-cta fade-up delay-3">
-        <a href="tracker.html" class="btn-primary">Chip Policy Tracker</a>
-        <a href="#contact" class="btn-ghost">Get in Touch</a>
-      </div>
-    </div>
     <div class="hero-right fade-up delay-2">
       <div class="hero-topics">
         <p class="topic-label">Areas of Focus</p>
@@ -977,48 +981,56 @@
           <div class="stat-label">Languages</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- POLICY TRACKER TEASER -->
-  <section id="tracker-teaser">
-    <div class="section-header">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Chip Policy Tracker</h2>
-    </div>
-    <div class="tracker-teaser-inner">
-      <div class="tracker-teaser-text">
-        <p>A living log of significant government actions shaping the global semiconductor and technology landscape — export controls, trade restrictions, industrial policy moves, and diplomatic developments.</p>
-        <p>Covers actions from BIS, Department of State, NDRC, MEA, and other key agencies across the US, China, India, EU, and beyond.</p>
-        <a href="tracker.html" class="tracker-cta">
-          View Chip Policy Tracker →
-        </a>
+        </div>
       </div>
     </div>
-    <div class="sample-work-bar">
-      Interested in my research? <a href="mailto:you@email.com" class="sample-link">Request a sample of my work →</a>
+  </section>
+  <section id="tracker-teaser">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Chip Policy Tracker</h2>
+      </div>
+      <div class="tracker-teaser-inner">
+        <div class="tracker-teaser-text">
+          <p>A living log of significant government actions shaping the global semiconductor and technology landscape — export controls, trade restrictions, industrial policy moves, and diplomatic developments.</p>
+          <p>Covers actions from BIS, Department of State, NDRC, MEA, and other key agencies across the US, China, India, EU, and beyond.</p>
+          <a href="tracker.html" class="tracker-cta">
+            View Chip Policy Tracker →
+          </a>
+        </div>
+      </div>
+      <div class="sample-work-bar">
+        Interested in my research? <a href="mailto:you@email.com" class="sample-link">Request a sample of my work →</a>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="section-header">
-      <span class="section-number">03</span>
-      <h2 class="section-title">Get in Touch</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="contact-simple">
-      <a href="/cdn-cgi/l/email-protection#ff86908abf9a929e9693d19c9092" class="contact-link">
-        <span class="contact-link-icon">✉</span>
-        <span class="__cf_email__" data-cfemail="2b52445e6b4e464a424705484446">[email&#160;protected]</span>
-      </a>
-      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
-        <span class="contact-link-icon">in</span>
-        linkedin.com/in/yourprofile
-      </a>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="contact-simple">
+        <a href="mailto:you@email.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          you@email.com
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+          <span class="contact-link-icon">in</span>
+          linkedin.com/in/yourprofile
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-nam
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="footer-name">Avinash Koli — Technology Policy & Geopolitics</span>
+      <span class="footer-note">© 2025 · Built with GitHub Pages</span>
+    </div>
+  </footer>
