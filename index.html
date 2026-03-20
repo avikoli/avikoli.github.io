@@ -78,17 +78,17 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
+      min-height: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 5rem;
+      padding-top: 4rem;
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 6rem 4rem 6rem 4rem;
+      padding: 3rem 3rem 3rem 3rem;
     }
 
     .hero-eyebrow {
@@ -96,7 +96,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent-warm);
-      margin-bottom: 2rem;
+      margin-bottom: 0.8rem;
     }
 
     .hero-name {
@@ -106,7 +106,7 @@
       line-height: 1.05;
       letter-spacing: -0.01em;
       color: var(--ink);
-      margin-bottom: 1.8rem;
+      margin-bottom: 1rem;
     }
 
     .hero-name em {
@@ -160,8 +160,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 4rem;
-      gap: 2rem;
+      padding: 3rem 3rem;
+      gap: 1.2rem;
     }
 
     .hero-stats {
@@ -175,7 +175,7 @@
 
     .stat-block {
       background: var(--bg);
-      padding: 2rem 1.8rem;
+      padding: 1.2rem 1.4rem;
     }
 
     .stat-number {
@@ -195,7 +195,7 @@
     }
 
     .hero-topics {
-      padding-top: 2rem;
+      padding-top: 0;
     }
 
     .topic-label {
@@ -226,14 +226,14 @@
 
     /* ── SECTION COMMONS ── */
     section {
-      padding: 6rem 4rem;
+      padding: 3rem 3rem;
     }
 
     .section-header {
       display: flex;
       align-items: baseline;
       gap: 1.5rem;
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
     }
 
     .section-number {
@@ -254,7 +254,7 @@
 
     .hero-profile {
       display: block;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .hero-photo-placeholder {
@@ -360,7 +360,105 @@
       flex-shrink: 0;
     }
 
-    /* ── WORKS ── */
+    /* ── POLICY TRACKER TEASER ── */
+    #tracker-teaser {
+      background: var(--bg);
+    }
+
+    .tracker-teaser-inner {
+      max-width: 60ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .tracker-teaser-text p {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .tracker-cta {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.75rem 1.8rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .tracker-cta:hover { opacity: 0.8; }
+
+    .tracker-preview {
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      font-size: 0.78rem;
+    }
+
+    .tracker-preview-row {
+      display: grid;
+      grid-template-columns: 90px 140px 1fr 1fr;
+      gap: 0;
+    }
+
+    .tracker-preview-row span {
+      padding: 0.7rem 0.9rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-light);
+      line-height: 1.45;
+    }
+
+    .tracker-preview-row span:last-child { border-right: none; }
+
+    .tracker-preview-row.header-row span {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+      background: var(--card-bg);
+    }
+
+    .tracker-preview-row.faded span {
+      color: var(--rule);
+      font-style: italic;
+      background: #faf9f6;
+    }
+
+    .sample-work-bar {
+      padding: 1.2rem 1.6rem;
+      background: var(--card-bg);
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sample-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+
+    .sample-link:hover { opacity: 0.7; }
+
+    /* ── CONTACT SIMPLE ── */
+    .contact-simple {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* ── WORKS (legacy, unused) ── */
     #works {
       background: var(--card-bg);
     }
@@ -686,11 +784,11 @@
 
     /* ── TABLET (max 1024px) ── */
     @media (max-width: 1024px) {
-      nav { padding: 1.2rem 2rem; }
+      nav { padding: 1rem 1.5rem; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 7rem 2rem 3rem; border-right: none; }
-      .hero-right { padding: 2rem 2rem 4rem; }
-      section { padding: 4rem 2rem; }
+      .hero-left { padding: 5rem 1.5rem 2rem; border-right: none; }
+      .hero-right { padding: 1.5rem 1.5rem 2.5rem; }
+      section { padding: 2.5rem 1.5rem; }
       .works-grid { grid-template-columns: repeat(2, 1fr); }
       .about-grid { gap: 3rem; }
     }
@@ -725,7 +823,7 @@
       /* Hero */
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-left {
-        padding: 6rem 1.2rem 2.5rem;
+        padding: 4.5rem 1.2rem 1.5rem;
         border-right: none;
       }
       .hero-name {
@@ -739,14 +837,14 @@
         padding: 1rem 1.5rem;
         font-size: 0.82rem;
       }
-      .hero-right { padding: 2rem 1.2rem 3rem; gap: 1.5rem; }
+      .hero-right { padding: 1.5rem 1.2rem 2rem; gap: 1rem; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .stat-block { padding: 1.2rem 1rem; }
-      .stat-number { font-size: 2.2rem; }
+      .stat-block { padding: 0.9rem 0.8rem; }
+      .stat-number { font-size: 2rem; }
       .stat-label { font-size: 0.65rem; }
 
       /* Sections */
-      section { padding: 3rem 1.2rem; }
+      section { padding: 2rem 1.2rem; }
       .section-title { font-size: 1.6rem; }
 
       .hero-profile { grid-template-columns: 100px 1fr; gap: 1.2rem; }
@@ -797,7 +895,7 @@
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" onclick="closeNav()">About</a></li>
-      <li><a href="#works" onclick="closeNav()">Works</a></li>
+      <li><a href="#tracker-teaser" onclick="closeNav()">Tracker</a></li>
       <li><a href="#contact" onclick="closeNav()">Contact</a></li>
     </ul>
   </nav>
@@ -835,18 +933,29 @@
       </div>
 
       <div class="hero-cta fade-up delay-3">
-        <a href="#works" class="btn-primary">View My Work</a>
+        <a href="tracker.html" class="btn-primary">Chip Policy Tracker</a>
         <a href="#contact" class="btn-ghost">Get in Touch</a>
       </div>
     </div>
     <div class="hero-right fade-up delay-2">
       <div class="hero-topics">
-        <p class="topic-label">Five Key Areas of Focus</p>
+        <p class="topic-label">Areas of Focus</p>
         <div class="topic-tags">
-          <span class="tag">Export Controls & Trade Law</span>
-          <span class="tag">US-China Tech Competition</span>
+          <span class="tag">Semiconductor Policy</span>
+          <span class="tag">Export Controls</span>
+          <span class="tag">US-China Tech Relations</span>
           <span class="tag">Supply Chain Strategy</span>
-          <span class="tag">Geopolitical Risk</span>
+          <span class="tag">Indo-Pacific</span>
+          <span class="tag">Industrial Policy</span>
+          <span class="tag">Tech Governance</span>
+          <span class="tag">CHIPS Act</span>
+          <span class="tag">Technology Policy & Regulation</span>
+          <span class="tag">Geopolitical Risk Analysis</span>
+          <span class="tag">Semiconductor Industry Strategy</span>
+          <span class="tag">Export Controls & Trade Law</span>
+          <span class="tag">US-China Technology Competition</span>
+          <span class="tag">Industrial & Innovation Policy</span>
+          <span class="tag">Supply Chain Security</span>
           <span class="tag">Strategic Forecasting</span>
         </div>
       </div>
@@ -871,114 +980,45 @@
     </div>
   </section>
 
-  <!-- WORKS -->
-  <section id="works">
+  <!-- POLICY TRACKER TEASER -->
+  <section id="tracker-teaser">
     <div class="section-header">
       <span class="section-number">02</span>
-      <h2 class="section-title">Selected Works</h2>
-      <div class="section-rule"></div>
+      <h2 class="section-title">Chip Policy Tracker</h2>
     </div>
-    <div class="works-grid">
-
-      <a href="#" class="work-card">
-        <span class="work-type">Policy Report</span>
-        <h3 class="work-title">Rethinking Chip Supply Chains in the Post-CHIPS Era</h3>
-        <p class="work-desc">A comprehensive analysis of how the CHIPS and Science Act is reshaping global semiconductor manufacturing geography and its second-order geopolitical consequences.</p>
-        <div class="work-meta">
-          <span>2024 · Think Tank Name</span>
-          <span class="work-arrow">→</span>
-        </div>
-      </a>
-
-      <a href="#" class="work-card">
-        <span class="work-type">Research Paper</span>
-        <h3 class="work-title">Export Controls as Foreign Policy: The New Toolkit</h3>
-        <p class="work-desc">Examining how the US Bureau of Industry and Security's October 2022 rules represent a paradigm shift in how technology is weaponised in great power competition.</p>
-        <div class="work-meta">
-          <span>2023 · Journal Name</span>
-          <span class="work-arrow">→</span>
-        </div>
-      </a>
-
-      <a href="#" class="work-card">
-        <span class="work-type">Advisory Project</span>
-        <h3 class="work-title">Semiconductor Strategy for Emerging Economies</h3>
-        <p class="work-desc">Strategic advisory engagement with a South-East Asian government on developing a national semiconductor roadmap amidst US-China technology decoupling pressures.</p>
-        <div class="work-meta">
-          <span>2023 · Confidential</span>
-          <span class="work-arrow">→</span>
-        </div>
-      </a>
-
-      <a href="#" class="work-card">
-        <span class="work-type">Op-Ed</span>
-        <h3 class="work-title">India's CHIPS Moment: Ambition, Reality, and the Path Forward</h3>
-        <p class="work-desc">A critical assessment of India's semiconductor ambitions, the India Semiconductor Mission, and the structural challenges the country must overcome to compete.</p>
-        <div class="work-meta">
-          <span>2024 · Publication Name</span>
-          <span class="work-arrow">→</span>
-        </div>
-      </a>
-
-      <a href="#" class="work-card">
-        <span class="work-type">Conference Paper</span>
-        <h3 class="work-title">The Taiwan Question Through a Semiconductor Lens</h3>
-        <p class="work-desc">Presented at [Conference Name]: How TSMC's centrality in global chip supply changes the strategic calculus around the Taiwan Strait and deterrence theory.</p>
-        <div class="work-meta">
-          <span>2022 · [Conference]</span>
-          <span class="work-arrow">→</span>
-        </div>
-      </a>
-
-      <a href="#" class="work-card">
-        <span class="work-type">Industry Report</span>
-        <h3 class="work-title">Mapping the Global EDA & IP Landscape: Chokepoints & Vulnerabilities</h3>
-        <p class="work-desc">An industry-facing report examining how design software and IP dependencies create strategic leverage points in the global semiconductor value chain.</p>
-        <div class="work-meta">
-          <span>2022 · Company Name</span>
-          <span class="work-arrow">→</span>
-        </div>
-      </a>
-
+    <div class="tracker-teaser-inner">
+      <div class="tracker-teaser-text">
+        <p>A living log of significant government actions shaping the global semiconductor and technology landscape — export controls, trade restrictions, industrial policy moves, and diplomatic developments.</p>
+        <p>Covers actions from BIS, Department of State, NDRC, MEA, and other key agencies across the US, China, India, EU, and beyond.</p>
+        <a href="tracker.html" class="tracker-cta">
+          View Chip Policy Tracker →
+        </a>
+      </div>
+    </div>
+    <div class="sample-work-bar">
+      Interested in my research? <a href="mailto:you@email.com" class="sample-link">Request a sample of my work →</a>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="section-header">
-      <span class="section-number">04</span>
+      <span class="section-number">03</span>
       <h2 class="section-title">Get in Touch</h2>
       <div class="section-rule"></div>
     </div>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#51283e2411343c30383d7f323e3c" class="contact-link">
-            <span class="contact-link-icon">✉</span>
-            <span class="__cf_email__" data-cfemail="344d5b41745159555d581a575b59">[email&#160;protected]</span>
-          </a>
-          <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
-            <span class="contact-link-icon">in</span>
-            linkedin.com/in/yourprofile
-          </a>
-        </div>
-      </div>
-      <form class="contact-form" onsubmit="return false;">
-        <div class="form-field">
-          <label class="form-label">Avinash Koli</label>
-          <input class="form-input" type="text" placeholder="Jane Smith" />
-        </div>
-        <div class="form-field">
-          <label class="form-label">Email Address</label>
-          <input class="form-input" type="email" placeholder="jane@example.com" />
-        </div>
-        <div class="form-field">
-          <label class="form-label">Subject</label>
-          <input class="form-input" type="text" placeholder="Speaking Engagement / Research Collaboration / ..." />
-        </div>
-        <div class="form-field">
-          <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Tell me about what you're working on..."></textarea>
-        </div>
-        <button type="submit" class="btn-send">Send Message</button>
-      </f
+    <div class="contact-simple">
+      <a href="/cdn-cgi/l/email-protection#ff86908abf9a929e9693d19c9092" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="__cf_email__" data-cfemail="2b52445e6b4e464a424705484446">[email&#160;protected]</span>
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+        <span class="contact-link-icon">in</span>
+        linkedin.com/in/yourprofile
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-nam
