@@ -3,400 +3,269 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Policy Tracker — Avinash Koli</title>
+  <title>Chip Policy Tracker — Avinash Koli</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #F7F5F1;
-      --ink: #1C1C1C;
-      --ink-light: #6B6560;
-      --accent: #111111;
-      --accent-warm: #C4874A;
-      --rule: #D8D3CB;
-      --card-bg: #EFECE6;
+      --bg: #F7F5F1; --ink: #1C1C1C; --ink-light: #6B6560;
+      --accent: #111111; --accent-warm: #C4874A; --rule: #D8D3CB; --card-bg: #EFECE6;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--accent); }
 
-    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.4rem 4rem;
-      background: rgba(247, 245, 241, 0.95);
-      backdrop-filter: blur(8px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247, 245, 241, 0.95); backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--rule);
     }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .nav-back {
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      text-decoration: none;
-      transition: color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--accent); }
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      padding: 9rem 4rem 3rem;
-    }
+    .page-header { max-width: 1200px; margin: 0 auto; padding: 7rem 2rem 2rem; }
+    .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 0.7rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 0.8rem; }
+    .page-subtitle { font-size: 0.88rem; color: var(--ink-light); max-width: 60ch; line-height: 1.8; }
 
-    .page-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-warm);
-      margin-bottom: 1rem;
-    }
+    .filters-outer { background: var(--card-bg); }
+    .filters { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+    .filter-group { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    .filter-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); white-space: nowrap; }
+    .filter-divider { width: 1px; height: 18px; background: var(--rule); }
+    .filter-btn { font-size: 0.67rem; letter-spacing: 0.05em; padding: 0.24rem 0.75rem; border: 1px solid var(--rule); background: transparent; color: var(--ink-light); cursor: pointer; transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-    .page-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
+    .meta-bar { max-width: 1200px; margin: 0 auto; padding: 0.6rem 2rem; display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--ink-light); }
 
-    .page-subtitle {
-      font-size: 0.92rem;
-      color: var(--ink-light);
-      max-width: 60ch;
-      line-height: 1.8;
-    }
-
-    /* ── FILTERS ── */
-    .filters {
-      padding: 1.5rem 4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      background: var(--card-bg);
-    }
-
-    .filter-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      margin-right: 0.4rem;
-    }
-
-    .filter-btn {
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      padding: 0.3rem 0.9rem;
-      border: 1px solid var(--rule);
-      background: transparent;
-      color: var(--ink-light);
-      cursor: pointer;
-      transition: all 0.18s;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    /* ── TABLE WRAPPER ── */
-    .table-wrapper {
-      padding: 2rem 4rem 6rem;
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
-    thead tr {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    thead th {
-      padding: 0.9rem 1rem;
-      text-align: left;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    tbody tr {
-      border-bottom: 1px solid var(--rule);
-      transition: background 0.15s;
-    }
-
+    .table-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    thead tr { background: var(--accent); color: #fff; }
+    thead th { padding: 0.8rem 0.9rem; text-align: left; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--rule); transition: background 0.15s; }
     tbody tr:hover { background: var(--card-bg); }
+    tbody td { padding: 0.85rem 0.9rem; vertical-align: top; line-height: 1.55; }
 
-    tbody td {
-      padding: 1rem 1rem;
-      vertical-align: top;
-      color: var(--ink-light);
-      line-height: 1.65;
+    .td-date { white-space: nowrap; font-size: 0.78rem; color: var(--ink-light); width: 100px; }
+    .td-country { font-size: 0.78rem; color: var(--ink-light); white-space: nowrap; }
+    .td-authority { font-size: 0.76rem; color: var(--accent-warm); white-space: nowrap; }
+    .td-instrument span, .td-valuechain span {
+      display: inline-block; font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.12rem 0.5rem; border: 1px solid var(--rule); color: var(--ink-light); white-space: nowrap;
     }
+    .td-description { color: var(--ink); font-weight: 400; }
+    .td-link { width: 75px; text-align: center; }
+    .source-link { display: inline-block; font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); text-decoration: none; padding: 0.22rem 0.65rem; border: 1px solid var(--accent); transition: background 0.18s, color 0.18s; white-space: nowrap; }
+    .source-link:hover { background: var(--accent); color: #fff; }
 
-    .td-date {
-      white-space: nowrap;
-      color: var(--ink-light);
-      font-size: 0.8rem;
-    }
+    .sort-btn { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--rule); background: transparent; color: var(--ink-light); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.18s; }
+    .sort-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.4); font-size: 0.9rem; }
+    .footer-note { font-size: 0.7rem; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; }
 
-    .td-country {
-      white-space: nowrap;
-    }
-
-    .country-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      padding: 0.15rem 0.55rem;
-      border: 1px solid var(--rule);
-      color: var(--ink-light);
-      white-space: nowrap;
-    }
-
-    .agency-name {
-      font-size: 0.72rem;
-      color: var(--accent-warm);
-      letter-spacing: 0.04em;
-      margin-top: 0.2rem;
-    }
-
-    .td-category span {
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.15rem 0.55rem;
-      border: 1px solid var(--rule);
-      color: var(--ink-light);
-    }
-
-    .td-development {
-      color: var(--ink);
-      font-weight: 400;
-      max-width: 280px;
-    }
-
-    .td-analysis {
-      color: var(--ink-light);
-      font-style: italic;
-      max-width: 300px;
-      font-size: 0.83rem;
-    }
-
-    .td-analysis strong {
-      color: var(--ink);
-      font-style: normal;
-      font-weight: 500;
-    }
-
-    /* ── LAST UPDATED ── */
-    .last-updated {
-      padding: 0 4rem 1rem;
-      font-size: 0.72rem;
-      color: var(--rule);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #111;
-      padding: 2rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      color: rgba(255,255,255,0.4);
-      font-size: 0.9rem;
-    }
-
-    .footer-note {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── MOBILE ── */
     @media (max-width: 640px) {
-      nav { padding: 1rem 1.2rem; }
-      .page-header { padding: 7rem 1.2rem 2rem; }
-      .filters { padding: 1rem 1.2rem; }
-      .table-wrapper { padding: 1.5rem 1.2rem 4rem; }
-      .last-updated { padding: 0 1.2rem 1rem; }
-      footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.5rem 1.2rem; }
-      thead th:nth-child(5) { display: none; }
-      tbody td:nth-child(5) { display: none; }
+      .nav-inner, .page-header, .filters, .meta-bar, .table-wrapper { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .footer-inner { flex-direction: column; gap: 0.4rem; text-align: center; padding: 0 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">Avinash Koli</a>
-    <a href="index.html" class="nav-back">← Back to Site</a>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Avinash Koli</a>
+      <a href="index.html" class="nav-back">← Back</a>
+    </div>
   </nav>
 
-  <!-- PAGE HEADER -->
   <div class="page-header">
-    <p class="page-eyebrow">Live · Updated Regularly</p>
-    <h1 class="page-title">Government Policy Tracker</h1>
-    <p class="page-subtitle">A curated log of significant government actions shaping the global semiconductor and technology landscape — with my analysis of what each development means for the industry and geopolitical balance.</p>
+    <p class="page-eyebrow">Updated Regularly</p>
+    <h1 class="page-title">Chip Policy Tracker</h1>
+    <p class="page-subtitle">A curated log of significant government actions shaping the global semiconductor and technology landscape — mapped to the value chain and policy instrument used.</p>
   </div>
 
-  <!-- FILTERS -->
-  <div class="filters">
-    <span class="filter-label">Filter by:</span>
-    <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
-    <button class="filter-btn" onclick="filterTable('US', this)">United States</button>
-    <button class="filter-btn" onclick="filterTable('China', this)">China</button>
-    <button class="filter-btn" onclick="filterTable('India', this)">India</button>
-    <button class="filter-btn" onclick="filterTable('EU', this)">EU</button>
-    <button class="filter-btn" onclick="filterTable('Export Controls', this)">Export Controls</button>
-    <button class="filter-btn" onclick="filterTable('Industrial Policy', this)">Industrial Policy</button>
-    <button class="filter-btn" onclick="filterTable('Diplomacy', this)">Diplomacy</button>
+  <div class="filters-outer">
+    <div class="filters">
+      <div class="filter-group">
+        <span class="filter-label">Country</span>
+        <button class="filter-btn active" onclick="filterTable('country','all',this)">All</button>
+        <button class="filter-btn" onclick="filterTable('country','United States',this)">United States</button>
+        <button class="filter-btn" onclick="filterTable('country','China',this)">China</button>
+        <button class="filter-btn" onclick="filterTable('country','India',this)">India</button>
+        <button class="filter-btn" onclick="filterTable('country','EU',this)">EU</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Policy Instrument</span>
+        <button class="filter-btn" onclick="filterTable('instrument','Export Control',this)">Export Control</button>
+        <button class="filter-btn" onclick="filterTable('instrument','Subsidy',this)">Subsidy</button>
+        <button class="filter-btn" onclick="filterTable('instrument','Regulation',this)">Regulation</button>
+        <button class="filter-btn" onclick="filterTable('instrument','Diplomacy',this)">Diplomacy</button>
+        <button class="filter-btn" onclick="filterTable('instrument','Sanctions',this)">Sanctions</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Value Chain</span>
+        <button class="filter-btn" onclick="filterTable('valuechain','Design',this)">Design</button>
+        <button class="filter-btn" onclick="filterTable('valuechain','Fab',this)">Fab</button>
+        <button class="filter-btn" onclick="filterTable('valuechain','Equipment',this)">Equipment</button>
+        <button class="filter-btn" onclick="filterTable('valuechain','OSAT',this)">OSAT</button>
+        <button class="filter-btn" onclick="filterTable('valuechain','Materials',this)">Materials</button>
+        <button class="filter-btn" onclick="filterTable('valuechain','Full Stack',this)">Full Stack</button>
+      </div>
+    </div>
   </div>
 
-  <div class="last-updated">Last updated: March 2025</div>
+  <div class="meta-bar">
+    <span>Last updated: 20 March 2025</span>
+    <div style="display:flex; align-items:center; gap:0.6rem;">
+      <span id="row-count"></span>
+      <span style="color:var(--rule);">·</span>
+      <button class="sort-btn" id="sortBtn" onclick="toggleSort()">Date ↓</button>
+    </div>
+  </div>
 
-  <!-- TABLE -->
   <div class="table-wrapper">
     <table id="policyTable">
       <thead>
         <tr>
           <th>Date</th>
           <th>Country</th>
-          <th>Agency</th>
-          <th>Category</th>
-          <th>Development</th>
-          <th>Analysis & Remarks</th>
+          <th>Authority</th>
+          <th>Policy Instrument</th>
+          <th>Value Chain</th>
+          <th>Description</th>
+          <th>Source</th>
         </tr>
       </thead>
       <tbody>
 
-        <tr data-country="US" data-category="Export Controls">
-          <td class="td-date">Oct 2023</td>
-          <td><span class="country-badge">🇺🇸 US</span></td>
-          <td><div class="agency-name">BIS · Dept of Commerce</div></td>
-          <td class="td-category"><span>Export Controls</span></td>
-          <td class="td-development">Expanded H100/H200 GPU export restrictions to China and additional countries; closed performance density loopholes in Oct 2022 rules.</td>
-          <td class="td-analysis">Tightens the Oct 2022 framework significantly. <strong>Key implication:</strong> Chinese cloud providers now face meaningful compute ceilings, accelerating Huawei Ascend adoption domestically.</td>
+        <tr data-country="United States" data-instrument="Export Control" data-valuechain="Full Stack">
+          <td class="td-date">17 Oct 2023</td>
+          <td class="td-country">United States</td>
+          <td class="td-authority">BIS · Commerce</td>
+          <td class="td-instrument"><span>Export Control</span></td>
+          <td class="td-valuechain"><span>Full Stack</span></td>
+          <td class="td-description">Expanded H100/H200 GPU export restrictions to China; closed performance density loopholes left in the Oct 2022 rules.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
         </tr>
 
-        <tr data-country="US" data-category="Diplomacy">
-          <td class="td-date">Mar 2024</td>
-          <td><span class="country-badge">🇺🇸 US</span></td>
-          <td><div class="agency-name">Dept of State</div></td>
-          <td class="td-category"><span>Diplomacy</span></td>
-          <td class="td-development">Pax Silica initiative announced — US diplomatic push to build semiconductor supply chain alliances with allied nations.</td>
-          <td class="td-analysis">Signals a shift toward <strong>technology diplomacy as foreign policy</strong>. Watch for bilateral MoUs with India, Japan, Netherlands as follow-through indicators.</td>
+        <tr data-country="United States" data-instrument="Diplomacy" data-valuechain="Full Stack">
+          <td class="td-date">12 Mar 2024</td>
+          <td class="td-country">United States</td>
+          <td class="td-authority">Dept of State</td>
+          <td class="td-instrument"><span>Diplomacy</span></td>
+          <td class="td-valuechain"><span>Full Stack</span></td>
+          <td class="td-description">Pax Silica initiative announced — US diplomatic push to build semiconductor supply chain alliances with allied nations.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
         </tr>
 
-        <tr data-country="India" data-category="Industrial Policy">
-          <td class="td-date">Feb 2024</td>
-          <td><span class="country-badge">🇮🇳 India</span></td>
-          <td><div class="agency-name">MeitY · Cabinet</div></td>
-          <td class="td-category"><span>Industrial Policy</span></td>
-          <td class="td-development">India approves three semiconductor projects under ISM: Tata Electronics (fab), CG Power (OSAT), Kaynes Semicon (OSAT) — total investment ~$15B.</td>
-          <td class="td-analysis"><strong>Historic milestone</strong> for India's fab ambitions. Execution risk remains high; OSAT approvals are more credible near-term than the Tata fab timeline.</td>
+        <tr data-country="India" data-instrument="Subsidy" data-valuechain="Fab">
+          <td class="td-date">29 Feb 2024</td>
+          <td class="td-country">India</td>
+          <td class="td-authority">MeitY · Cabinet</td>
+          <td class="td-instrument"><span>Subsidy</span></td>
+          <td class="td-valuechain"><span>Fab</span></td>
+          <td class="td-description">India approves three semiconductor projects under ISM: Tata Electronics (fab), CG Power (OSAT), Kaynes Semicon (OSAT) — total investment ~$15B.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
         </tr>
 
-        <tr data-country="China" data-category="Industrial Policy">
-          <td class="td-date">Sep 2023</td>
-          <td><span class="country-badge">🇨🇳 China</span></td>
-          <td><div class="agency-name">NDRC · MIIT</div></td>
-          <td class="td-category"><span>Industrial Policy</span></td>
-          <td class="td-development">China's "Big Fund III" ($47.5B state fund) launched targeting advanced chip design, equipment, and materials to counter US export controls.</td>
-          <td class="td-analysis">Largest single mobilisation of state capital in semiconductor history. Focus on equipment and materials suggests a <strong>strategic pivot away from pure fab scaling</strong> toward supply chain self-sufficiency.</td>
+        <tr data-country="China" data-instrument="Subsidy" data-valuechain="Equipment">
+          <td class="td-date">05 Sep 2023</td>
+          <td class="td-country">China</td>
+          <td class="td-authority">NDRC · MIIT</td>
+          <td class="td-instrument"><span>Subsidy</span></td>
+          <td class="td-valuechain"><span>Equipment</span></td>
+          <td class="td-description">China's "Big Fund III" ($47.5B state fund) launched targeting advanced chip design, equipment, and materials to counter US export controls.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
         </tr>
 
-        <tr data-country="EU" data-category="Industrial Policy">
-          <td class="td-date">Sep 2023</td>
-          <td><span class="country-badge">🇪🇺 EU</span></td>
-          <td><div class="agency-name">European Commission</div></td>
-          <td class="td-category"><span>Industrial Policy</span></td>
-          <td class="td-development">EU Chips Act officially enters into force, targeting 20% of global chip production by 2030 with €43B in public and private investment.</td>
-          <td class="td-analysis">Ambitious target faces headwinds: European chip demand is largely automotive/industrial, not leading-edge. <strong>TSMC Dresden fab</strong> is the centrepiece bet — success depends on sustained subsidy and demand certainty.</td>
+        <tr data-country="EU" data-instrument="Subsidy" data-valuechain="Fab">
+          <td class="td-date">21 Sep 2023</td>
+          <td class="td-country">EU</td>
+          <td class="td-authority">European Commission</td>
+          <td class="td-instrument"><span>Subsidy</span></td>
+          <td class="td-valuechain"><span>Fab</span></td>
+          <td class="td-description">EU Chips Act enters into force, targeting 20% of global chip production by 2030 with €43B in public and private investment.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
         </tr>
 
-        <tr data-country="US" data-category="Export Controls">
-          <td class="td-date">Jan 2025</td>
-          <td><span class="country-badge">🇺🇸 US</span></td>
-          <td><div class="agency-name">BIS · Dept of Commerce</div></td>
-          <td class="td-category"><span>Export Controls</span></td>
-          <td class="td-development">Biden administration's "AI diffusion rule" — tiered framework restricting advanced AI chip exports globally, with allies on Tier 1 and most countries on Tier 2/3.</td>
-          <td class="td-analysis">Most sweeping extraterritorial tech control in decades. <strong>Creates friction with Middle East and Southeast Asia partners</strong> who want AI compute access without full alignment with US security requirements.</td>
+        <tr data-country="United States" data-instrument="Regulation" data-valuechain="Design">
+          <td class="td-date">13 Jan 2025</td>
+          <td class="td-country">United States</td>
+          <td class="td-authority">BIS · Commerce</td>
+          <td class="td-instrument"><span>Regulation</span></td>
+          <td class="td-valuechain"><span>Design</span></td>
+          <td class="td-description">Biden AI diffusion rule — tiered framework restricting advanced AI chip exports globally, with allies on Tier 1 and most countries on Tier 2/3.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
         </tr>
 
       </tbody>
     </table>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    <span class="footer-name">Avinash Koli — Technology Policy & Geopolitics</span>
-    <span class="footer-note">© 2025 · All analysis is original</span>
+    <div class="footer-inner">
+      <span class="footer-name">Avinash Koli</span>
+    </div>
   </footer>
 
   <script>
-    function filterTable(value, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    const activeFilters = { country: 'all', instrument: null, valuechain: null };
+
+    function filterTable(type, value, btn) {
+      // If clicking an already-active non-all filter, deselect it
+      if (activeFilters[type] === value && value !== 'all') {
+        activeFilters[type] = null;
+        btn.classList.remove('active');
+      } else {
+        // Clear active state for all buttons in this group
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${type}'`)) {
+            b.classList.remove('active');
+          }
+        });
+        activeFilters[type] = (value === 'all') ? 'all' : value;
+        btn.classList.add('active');
+      }
+
       const rows = document.querySelectorAll('#policyTable tbody tr');
+      let visible = 0;
       rows.forEach(row => {
-        if (value === 'all') {
-          row.style.display = '';
-        } else {
-          const country = row.dataset.country || '';
-          const category = row.dataset.category || '';
-          row.style.display = (country === value || category === value) ? '' : 'none';
-        }
+        const countryOk = !activeFilters.country || activeFilters.country === 'all' || row.dataset.country === activeFilters.country;
+        const instrOk   = !activeFilters.instrument || row.dataset.instrument === activeFilters.instrument;
+        const vcOk      = !activeFilters.valuechain  || row.dataset.valuechain  === activeFilters.valuechain;
+        const show = countryOk && instrOk && vcOk;
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
       });
+      document.getElementById('row-count').textContent = visible + ' entries';
     }
+
+    let sortAsc = false;
+
+    function toggleSort() {
+      sortAsc = !sortAsc;
+      document.getElementById('sortBtn').textContent = sortAsc ? 'Date ↑' : 'Date ↓';
+      const tbody = document.querySelector('#policyTable tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const dateA = new Date(a.querySelector('.td-date').textContent.trim());
+        const dateB = new Date(b.querySelector('.td-date').textContent.trim());
+        return sortAsc ? dateA - dateB : dateB - dateA;
+      });
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    // Default: newest first on load
+    window.addEventListener('DOMContentLoaded', () => { sortAsc = true; toggleSort(); });
   </script>
 
 </body>
