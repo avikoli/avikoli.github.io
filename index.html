@@ -96,15 +96,15 @@
     }
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 3rem 2rem 3rem 0;
+      padding: 3rem 0 1.5rem 0;
     }
 
     .hero-eyebrow {
@@ -175,18 +175,16 @@
     .hero-right {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 3rem 0 3rem 2rem;
+      padding: 0 0 2.5rem 0;
       gap: 1.2rem;
     }
 
     .hero-stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: var(--rule);
       border: 1px solid var(--rule);
-      margin-top: auto;
     }
 
     .stat-block {
@@ -798,11 +796,8 @@
     /* ── TABLET (max 1024px) ── */
     @media (max-width: 1024px) {
       nav { padding: 1rem 1.5rem; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-left { padding: 5rem 1.5rem 2rem; border-right: none; }
-      .hero-right { padding: 1.5rem 1.5rem 2.5rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
       section { padding: 2.5rem 0; }
-      .about-grid { gap: 3rem; }
     }
 
     /* ── MOBILE (max 640px) ── */
@@ -834,10 +829,7 @@
       }
 
       /* Hero */
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-left { padding: 3rem 0 1.5rem; }
-      .hero-right { padding: 1.5rem 0 2rem; gap: 1rem; }
-      .hero-name { font-size: clamp(2.6rem, 11vw, 4rem); margin-bottom: 1.2rem; }
+      .hero-name { font-size: clamp(2.6rem, 11vw, 4rem); margin-bottom: 1rem; }
       .hero-cta { flex-direction: column; align-items: stretch; }
       .btn-primary, .btn-ghost { text-align: center; padding: 1rem 1.5rem; font-size: 0.82rem; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -1001,7 +993,7 @@
         </div>
       </div>
       <div class="sample-work-bar">
-        Interested in my research? <a href="mailto:you@email.com" class="sample-link">Request a sample of my work →</a>
+        Interested in my research? <a href="/cdn-cgi/l/email-protection#bdc4d2c8fdd8d0dcd4d193ded2d0" class="sample-link">Request a sample of my work →</a>
       </div>
     </div>
   </section>
@@ -1015,9 +1007,9 @@
         <div class="section-rule"></div>
       </div>
       <div class="contact-simple">
-        <a href="mailto:you@email.com" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#156c7a60557078747c793b767a78" class="contact-link">
           <span class="contact-link-icon">✉</span>
-          you@email.com
+          <span class="__cf_email__" data-cfemail="6f16001a2f0a020e0603410c0002">[email&#160;protected]</span>
         </a>
         <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
           <span class="contact-link-icon">in</span>
@@ -1030,7 +1022,4 @@
   <!-- FOOTER -->
   <footer>
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-      <span class="footer-name">Avinash Koli — Technology Policy & Geopolitics</span>
-      <span class="footer-note">© 2025 · Built with GitHub Pages</span>
-    </div>
-  </footer>
+      <span class="footer
