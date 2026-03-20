@@ -66,13 +66,28 @@
 
     .sort-btn { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--rule); background: transparent; color: var(--ink-light); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.18s; }
     .sort-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* NOTES */
+    .notes-outer { background: var(--card-bg); }
+    .notes-inner { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+    .notes-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 2rem; }
+    .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .note-block { display: flex; flex-direction: column; gap: 0.6rem; }
+    .note-number { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-style: italic; color: var(--accent-warm); }
+    .note-heading { font-size: 0.82rem; font-weight: 500; color: var(--ink); letter-spacing: 0.02em; }
+    .note-body { font-size: 0.8rem; color: var(--ink-light); line-height: 1.75; }
+    .note-body strong { color: var(--ink); font-weight: 500; }
+    .note-link { color: var(--accent); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.06em; }
+    .note-link:hover { text-decoration: underline; }
+
     .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
     .footer-name { font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.4); font-size: 0.9rem; }
     .footer-note { font-size: 0.7rem; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; }
 
     @media (max-width: 640px) {
-      .nav-inner, .page-header, .filters, .meta-bar, .table-wrapper { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .nav-inner, .page-header, .filters, .meta-bar, .table-wrapper, .notes-inner { padding-left: 1.2rem; padding-right: 1.2rem; }
       .footer-inner { flex-direction: column; gap: 0.4rem; text-align: center; padding: 0 1.2rem; }
+      .notes-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
   </style>
 </head>
@@ -211,7 +226,41 @@
     </table>
   </div>
 
-  <footer>
+  <!-- NOTES -->
+  <div class="notes-outer">
+    <div class="notes-inner">
+      <h2 class="notes-title">Notes & Methodology</h2>
+      <div class="notes-grid">
+
+        <div class="note-block">
+          <div class="note-number">01</div>
+          <h3 class="note-heading">Policy Instrument Categorisation</h3>
+          <p class="note-body">
+            The policy instrument typology used in this tracker — Export Control, Subsidy, Regulation, Diplomacy, Sanctions — is adopted from <strong>[Author, Title, Year]</strong>. Add your own definition of each category here. <a href="#" class="note-link">View source →</a>
+          </p>
+        </div>
+
+        <div class="note-block">
+          <div class="note-number">02</div>
+          <h3 class="note-heading">Value Chain Mapping</h3>
+          <p class="note-body">
+            The value chain segmentation — Design, Fab, Equipment, OSAT, Materials, Full Stack — is based on <strong>[your framework or resource]</strong>. Add your definition of each segment and how you assign entries to a segment here. <a href="#" class="note-link">View resource →</a>
+          </p>
+        </div>
+
+        <div class="note-block">
+          <div class="note-number">03</div>
+          <h3 class="note-heading">How I Track</h3>
+          <p class="note-body">
+            Entries are sourced by monitoring RSS feeds from major government authorities — including BIS, Federal Register, NDRC, MEA, European Commission, MeitY, and others. Each item is reviewed and filtered for relevance to the semiconductor ecosystem before being added to this tracker.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  
     <div class="footer-inner">
       <span class="footer-name">Avinash Koli</span>
     </div>
