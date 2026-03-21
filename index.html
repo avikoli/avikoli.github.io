@@ -247,6 +247,112 @@
 
     .tag:hover { border-color: var(--accent); color: var(--accent); cursor: default; }
 
+    /* ── TOP BUTTONS ── */
+    .hero-top-btns {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin: 0.6rem 0 1.2rem 0;
+    }
+
+    .btn-top {
+      display: inline-block;
+      padding: 0.28rem 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-top:hover { opacity: 0.75; }
+
+    .btn-top-ghost {
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+
+    .btn-top-ghost:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+
+    /* ── STATS ── */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.5rem;
+    }
+
+    .stat-block {
+      background: var(--bg);
+      padding: 0.8rem 0.9rem;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    /* ── DUAL TRACKER ── */
+    .dual-tracker {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-bottom: 1rem;
+    }
+
+    .tracker-card {
+      background: var(--bg);
+      padding: 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .tracker-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .tracker-card-desc {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .tracker-card-link {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 0.3rem;
+      transition: opacity 0.2s;
+    }
+
+    .tracker-card-link:hover { opacity: 0.7; }
+
     /* ── SECTION COMMONS ── */
     section {
       padding: 1.5rem 0;
@@ -846,10 +952,9 @@
       .hero-name { font-size: clamp(1.4rem, 5vw, 2rem); }
       .hero-cta { gap: 0.4rem; }
       .btn-primary, .btn-ghost { font-size: 0.58rem; padding: 0.25rem 0.6rem; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .stat-block { padding: 0.9rem 0.8rem; }
-      .stat-number { font-size: 2rem; }
-      .stat-label { font-size: 0.65rem; }
+      .hero-stats { grid-template-columns: repeat(4, 1fr); }
+      .stat-number { font-size: 1.4rem; }
+      .dual-tracker { grid-template-columns: 1fr; }
 
       /* Sections */
       section { padding: 2rem 0; }
@@ -927,6 +1032,12 @@
         <div class="hero-left">
           <p class="hero-eyebrow fade-up">Technology Policy · Geopolitics · Semiconductors</p>
 
+          <div class="hero-top-btns fade-up delay-1">
+            <a href="tracker.html" class="btn-top">Chip Policy Tracker</a>
+            <a href="press.html" class="btn-top">Press Briefings Tracker</a>
+            <a href="#contact" class="btn-top btn-top-ghost">Get in Touch</a>
+          </div>
+
           <div class="hero-profile">
             <div class="hero-bio">
               <p>Hi, I am Avinash Koli, a technology policy and strategy professional. Currently, I steer technology policy and geostrategy for the CEO's Office, Tata Electronics.</p>
@@ -937,9 +1048,15 @@
             </div>
           </div>
 
-          <div class="hero-cta">
-            <a href="tracker.html" class="btn-primary">Chip Policy Tracker</a>
-            <a href="#contact" class="btn-ghost">Get in Touch</a>
+          <div class="hero-stats">
+            <div class="stat-block"><div class="stat-number">7+</div><div class="stat-label">Years Experience</div></div>
+            <div class="stat-block"><div class="stat-number">3</div><div class="stat-label">Govt Engagements</div></div>
+            <div class="stat-block"><div class="stat-number">2</div><div class="stat-label">Think Tanks</div></div>
+            <div class="stat-block"><div class="stat-number">1</div><div class="stat-label">Best Paper Award</div></div>
+            <div class="stat-block"><div class="stat-number">15+</div><div class="stat-label">Countries Tracked</div></div>
+            <div class="stat-block"><div class="stat-number">3</div><div class="stat-label">Geographies</div></div>
+            <div class="stat-block"><div class="stat-number">20+</div><div class="stat-label">Policy Briefs</div></div>
+            <div class="stat-block"><div class="stat-number">1</div><div class="stat-label">Fellowship</div></div>
           </div>
         </div>
       </div>
@@ -948,21 +1065,23 @@
 
   <section id="tracker-teaser">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number"></span>
-        <h2 class="section-title">Chip Policy Tracker</h2>
-      </div>
-      <div class="tracker-teaser-inner">
-        <div class="tracker-teaser-text">
-          <p>A living log of significant government actions shaping the global semiconductor and technology landscape — export controls, trade restrictions, industrial policy moves, and diplomatic developments.</p>
-          <p>Covers actions from BIS, Department of State, NDRC, MEA, and other key agencies across the US, China, India, EU, and beyond.</p>
-          <a href="tracker.html" class="tracker-cta">
-            View Chip Policy Tracker →
-          </a>
+      <div class="dual-tracker">
+
+        <div class="tracker-card">
+          <h3 class="tracker-card-title">Chip Policy Tracker</h3>
+          <p class="tracker-card-desc">A living log of significant government actions shaping the global semiconductor landscape — export controls, trade restrictions, industrial policy, and diplomatic developments across the US, China, India, EU, and beyond.</p>
+          <a href="tracker.html" class="tracker-card-link">View Tracker →</a>
         </div>
+
+        <div class="tracker-card">
+          <h3 class="tracker-card-title">Press Briefings Tracker</h3>
+          <p class="tracker-card-desc">A curated log of press briefings from governments in India, China, and the US that carry consequences for the geopolitics of semiconductors and emerging technology — read through the lens of India's strategic interest.</p>
+          <a href="press.html" class="tracker-card-link">View Tracker →</a>
+        </div>
+
       </div>
       <div class="sample-work-bar">
-        Interested in my research? <a href="/cdn-cgi/l/email-protection#6504130c0b04160d0e0a090c250c0c1101040910080b0c4b060a08" class="sample-link">Request a sample of my work →</a>
+        Interested in my research? <a href="mailto:avinashkoli@iitdalumni.com" class="sample-link">Request a sample of my work →</a>
       </div>
     </div>
   </section>
