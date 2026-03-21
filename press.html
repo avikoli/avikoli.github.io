@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Press Briefings Tracker — Avinash Koli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F5F1; --ink: #1C1C1C; --ink-light: #1C1C1C;
+      --accent: #111111; --accent-warm: #C4874A; --rule: #D8D3CB; --card-bg: #EFECE6;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247, 245, 241, 0.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+    .nav-back { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: opacity 0.2s; }
+    .nav-back:hover { opacity: 0.6; }
+
+    .page-header { max-width: 1200px; margin: 0 auto; padding: 7rem 2rem 2rem; }
+    .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 0.7rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 0.8rem; }
+    .page-subtitle { font-size: 0.88rem; color: var(--ink); max-width: 60ch; line-height: 1.8; }
+    .page-perspective { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-warm); margin-top: 0.6rem; }
+
+    .filters-outer { background: var(--card-bg); }
+    .filters { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .filter-group { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    .filter-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+    .filter-divider { width: 1px; height: 18px; background: var(--rule); }
+    .filter-btn { font-size: 0.67rem; letter-spacing: 0.05em; padding: 0.24rem 0.75rem; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .meta-bar { max-width: 1200px; margin: 0 auto; padding: 0.6rem 2rem; display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--ink); }
+    .sort-btn { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.18s; }
+    .sort-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .table-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    thead tr { background: var(--accent); color: #fff; }
+    thead th { padding: 0.8rem 0.9rem; text-align: left; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--rule); transition: background 0.15s; }
+    tbody tr:hover { background: var(--card-bg); }
+    tbody td { padding: 0.85rem 0.9rem; vertical-align: top; line-height: 1.55; color: var(--ink); }
+
+    .td-date { white-space: nowrap; font-size: 0.78rem; width: 105px; }
+    .td-country { white-space: nowrap; font-size: 0.78rem; }
+    .td-authority { font-size: 0.76rem; color: var(--accent-warm); white-space: nowrap; }
+    .td-topic span { display: inline-block; font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.12rem 0.5rem; border: 1px solid var(--rule); color: var(--ink); white-space: nowrap; }
+    .td-summary { font-size: 0.82rem; max-width: 380px; }
+    .td-india-angle { font-size: 0.8rem; font-style: italic; color: var(--ink); max-width: 260px; }
+    .td-link { width: 75px; text-align: center; }
+    .source-link { display: inline-block; font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); text-decoration: none; padding: 0.22rem 0.65rem; border: 1px solid var(--accent); transition: background 0.18s, color 0.18s; white-space: nowrap; }
+    .source-link:hover { background: var(--accent); color: #fff; }
+
+    /* NOTES */
+    .notes-outer { background: var(--card-bg); }
+    .notes-inner { max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem; }
+    .notes-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; }
+    .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .note-block { display: flex; flex-direction: column; gap: 0.5rem; }
+    .note-number { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-style: italic; color: var(--accent-warm); }
+    .note-heading { font-size: 0.8rem; font-weight: 500; color: var(--ink); }
+    .note-body { font-size: 0.78rem; color: var(--ink); line-height: 1.75; }
+    .note-link { color: var(--accent); text-decoration: none; font-size: 0.73rem; }
+    .note-link:hover { text-decoration: underline; }
+
+    footer { background: #111; padding: 1.5rem 0; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; color: rgba(255,255,255,0.4); font-size: 0.9rem; }
+
+    @media (max-width: 640px) {
+      .nav-inner, .page-header, .filters, .meta-bar, .table-wrapper, .notes-inner { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .notes-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-inner { padding: 0 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Avinash Koli</a>
+      <a href="index.html" class="nav-back">← Back</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <p class="page-eyebrow">Updated Regularly</p>
+    <h1 class="page-title">Press Briefings Tracker</h1>
+    <p class="page-subtitle">A curated log of press briefings from India, China, and the United States that carry consequences for the geopolitics of semiconductors and emerging technology.</p>
+    <p class="page-perspective">Primary lens: India's strategic interest</p>
+  </div>
+
+  <div class="filters-outer">
+    <div class="filters">
+      <div class="filter-group">
+        <span class="filter-label">Country</span>
+        <button class="filter-btn active" onclick="filterTable('country','all',this)">All</button>
+        <button class="filter-btn" onclick="filterTable('country','India',this)">India</button>
+        <button class="filter-btn" onclick="filterTable('country','United States',this)">United States</button>
+        <button class="filter-btn" onclick="filterTable('country','China',this)">China</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Topic</span>
+        <button class="filter-btn" onclick="filterTable('topic','Semiconductors',this)">Semiconductors</button>
+        <button class="filter-btn" onclick="filterTable('topic','Trade',this)">Trade</button>
+        <button class="filter-btn" onclick="filterTable('topic','Defence Tech',this)">Defence Tech</button>
+        <button class="filter-btn" onclick="filterTable('topic','AI',this)">AI</button>
+        <button class="filter-btn" onclick="filterTable('topic','Diplomacy',this)">Diplomacy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="meta-bar">
+    <span>Last updated: 20 March 2025</span>
+    <div style="display:flex;align-items:center;gap:0.6rem;">
+      <span id="row-count"></span>
+      <span style="color:var(--rule);">·</span>
+      <button class="sort-btn" id="sortBtn" onclick="toggleSort()">Date ↓</button>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table id="pressTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Country</th>
+          <th>Authority</th>
+          <th>Topic</th>
+          <th>Summary</th>
+          <th>India Angle</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr data-country="India" data-topic="Semiconductors">
+          <td class="td-date">29 Feb 2024</td>
+          <td class="td-country">India</td>
+          <td class="td-authority">MEA · PMO</td>
+          <td class="td-topic"><span>Semiconductors</span></td>
+          <td class="td-summary">Government announces approval of India Semiconductor Mission projects — Tata Electronics fab, CG Power and Kaynes OSAT plants.</td>
+          <td class="td-india-angle">Marks India's first credible entry into semiconductor manufacturing. Execution will define whether India becomes a supply chain node or remains a consumer market.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
+        </tr>
+
+        <tr data-country="United States" data-topic="Semiconductors">
+          <td class="td-date">13 Jan 2025</td>
+          <td class="td-country">United States</td>
+          <td class="td-authority">White House</td>
+          <td class="td-topic"><span>Semiconductors</span></td>
+          <td class="td-summary">Biden administration releases final AI diffusion rule restricting advanced chip exports to most countries outside Tier 1 allies.</td>
+          <td class="td-india-angle">India is placed in Tier 2 — requiring licensing for advanced AI chips. Signals pressure on India to align more closely with US tech governance frameworks.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
+        </tr>
+
+        <tr data-country="China" data-topic="Trade">
+          <td class="td-date">03 Dec 2024</td>
+          <td class="td-country">China</td>
+          <td class="td-authority">MOFCOM</td>
+          <td class="td-topic"><span>Trade</span></td>
+          <td class="td-summary">China announces export controls on gallium, germanium, and antimony — critical materials used in semiconductor and defence applications.</td>
+          <td class="td-india-angle">India imports gallium and germanium for electronics. Controls create an opening for India to develop domestic critical mineral processing capacity.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
+        </tr>
+
+        <tr data-country="United States" data-topic="Diplomacy">
+          <td class="td-date">21 Jun 2023</td>
+          <td class="td-country">United States</td>
+          <td class="td-authority">White House · State Dept</td>
+          <td class="td-topic"><span>Diplomacy</span></td>
+          <td class="td-summary">PM Modi's state visit to Washington — iCET framework expanded, GE jet engine deal signed, and semiconductor MoUs announced with Micron.</td>
+          <td class="td-india-angle">Landmark moment for India-US tech partnership. Micron's Gujarat plant announcement directly tied to this visit — shows how diplomacy can unlock industrial investment.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
+        </tr>
+
+        <tr data-country="India" data-topic="AI">
+          <td class="td-date">01 Mar 2024</td>
+          <td class="td-country">India</td>
+          <td class="td-authority">MeitY</td>
+          <td class="td-topic"><span>AI</span></td>
+          <td class="td-summary">India launches IndiaAI Mission with Rs 10,372 crore outlay — covering compute infrastructure, datasets, and application development.</td>
+          <td class="td-india-angle">Compute procurement under IndiaAI is directly constrained by US AI diffusion rules. India must navigate chip access while building sovereign AI capacity.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
+        </tr>
+
+        <tr data-country="China" data-topic="Semiconductors">
+          <td class="td-date">29 Aug 2023</td>
+          <td class="td-country">China</td>
+          <td class="td-authority">MIIT</td>
+          <td class="td-topic"><span>Semiconductors</span></td>
+          <td class="td-summary">Huawei launches Mate 60 Pro with 7nm Kirin 9000S chip — manufactured by SMIC despite US export controls.</td>
+          <td class="td-india-angle">Demonstrates that export controls are not watertight. For India, it underscores the risk of over-dependence on any single technology corridor.</td>
+          <td class="td-link"><a href="#" class="source-link">Link →</a></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NOTES -->
+  <div class="notes-outer">
+    <div class="notes-inner">
+      <h2 class="notes-title">Notes & Methodology</h2>
+      <div class="notes-grid">
+        <div class="note-block">
+          <div class="note-number">01</div>
+          <h3 class="note-heading">Selection Criteria</h3>
+          <p class="note-body">Briefings are selected based on their likely consequence for semiconductor supply chains, technology trade, or geopolitical positioning relevant to the semiconductor ecosystem. Not all press briefings are included — only those with material relevance.</p>
+        </div>
+        <div class="note-block">
+          <div class="note-number">02</div>
+          <h3 class="note-heading">India Angle</h3>
+          <p class="note-body">Each entry includes my own analysis of how the development affects India's strategic interests — as a semiconductor ambition, a technology consumer, a diplomatic actor, or a potential supply chain node. This is interpretive, not official.</p>
+        </div>
+        <div class="note-block">
+          <div class="note-number">03</div>
+          <h3 class="note-heading">How I Track</h3>
+          <p class="note-body">I monitor RSS feeds and press release portals from MEA, PMO, White House, State Department, MFA China, MOFCOM, MIIT, and others. Items are filtered for semiconductor and technology geopolitics relevance before being added.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Avinash Koli</span>
+    </div>
+  </footer>
+
+  <script>
+    const activeFilters = { country: 'all', topic: null };
+
+    function filterTable(type, value, btn) {
+      if (activeFilters[type] === value && value !== 'all') {
+        activeFilters[type] = null;
+        btn.classList.remove('active');
+      } else {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${type}'`)) b.classList.remove('active');
+        });
+        activeFilters[type] = value === 'all' ? 'all' : value;
+        btn.classList.add('active');
+      }
+      const rows = document.querySelectorAll('#pressTable tbody tr');
+      let visible = 0;
+      rows.forEach(row => {
+        const countryOk = !activeFilters.country || activeFilters.country === 'all' || row.dataset.country === activeFilters.country;
+        const topicOk = !activeFilters.topic || row.dataset.topic === activeFilters.topic;
+        const show = countryOk && topicOk;
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      document.getElementById('row-count').textContent = visible + ' entries';
+    }
+
+    let sortAsc = false;
+    function toggleSort() {
+      sortAsc = !sortAsc;
+      document.getElementById('sortBtn').textContent = sortAsc ? 'Date ↑' : 'Date ↓';
+      const tbody = document.querySelector('#pressTable tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const da = new Date(a.querySelector('.td-date').textContent.trim());
+        const db = new Date(b.querySelector('.td-date').textContent.trim());
+        return sortAsc ? da - db : db - da;
+      });
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    window.addEventListener('DOMContentLoaded', () => { sortAsc = true; toggleSort(); });
+    document.getElementById('row-count').textContent = document.querySelectorAll('#pressTable tbody tr').length + ' entries';
+  </script>
+
+</body>
+</html>
